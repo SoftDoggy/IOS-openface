@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 毕业季了，最近比较忙，先放在这里，后面有机会在更新，抱歉了各位宝宝。
 
 #OpenFaceIOS
@@ -41,7 +40,3 @@ User：Dooonut https://github.com/Dooonut
 
 
 <img src="https://github.com/FaceAR/OpenFaceIOS/blob/master/imgs/KeeganRen5.png" height="282" width="222" ><img src="https://github.com/FaceAR/OpenFaceIOS/blob/master/imgs/KeeganRen6.png" height="282" width="222" ><img src="https://github.com/FaceAR/OpenFaceIOS/blob/master/imgs/KeeganRen7.png" height="282" width="222" >
-=======
-# IOS-openface
-This is based on openface SDK, run on xcode to implement a software like MTxiuxiu
->>>>>>> 1c4bfe16a20cb7e66e397582fc8a2cf1f8663b85
