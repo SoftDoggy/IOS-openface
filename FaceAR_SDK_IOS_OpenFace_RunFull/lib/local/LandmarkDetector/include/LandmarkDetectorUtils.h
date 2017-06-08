@@ -69,6 +69,9 @@
 
 namespace LandmarkDetector
 {
+    //yyj funtion
+    //int* returnLoc();
+    
 	//===========================================================================	
 	// Defining a set of useful utility functions to be used within CLNF
 

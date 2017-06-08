@@ -16,8 +16,6 @@
 #include "FaceARDetectIOS.h"
 //
 
-
-
 @interface ViewController ()
 
 @end
@@ -25,6 +23,10 @@
 @implementation ViewController {
     FaceARDetectIOS *facear;
     int frame_count;
+    cv::Mat_<double> res;
+    int rows;//the rows of res
+    int i;//assign which point to use
+    int x,y;//get the x and y of the point
 }
 
 - (void)viewDidLoad {
@@ -46,13 +48,18 @@
 
 - (IBAction)startButtonPressed:(id)sender
 {
+    i=0;
     [self.videoCamera start];
+}
+- (IBAction)stopButtonPressed:(id)sender {
+    [self.videoCamera stop];
 }
 
 - (void)processImage:(cv::Mat &)image
 {
     cv::Mat targetImage(image.cols,image.rows,CV_8UC3);
     cv::cvtColor(image, targetImage, cv::COLOR_BGRA2BGR);
+
     if(targetImage.empty()){
         std::cout << "targetImage empty" << std::endl;
     }
@@ -67,9 +74,19 @@
     
         fx = (fx + fy) / 2.0;
         fy = fx;
-    
-        [[FaceARDetectIOS alloc] run_FaceAR:targetImage frame__:frame_count fx__:fx fy__:fy cx__:cx cy__:cy];
+        res=[[FaceARDetectIOS alloc] run_FaceAR:targetImage frame__:frame_count fx__:fx fy__:fy cx__:cx cy__:cy];
+        rows = res.rows/2;
+        x = res.at<double>(i);
+        y = res.at<double>(i+rows);
+        x-=20;
+        //y+=64;
+        printf("mm-res:x-%dy-%d\n",x,y);
+        //imageView.frame.size.
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            _adornment.frame=CGRectMake(x,y, 100, 100);
+        }];
         frame_count = frame_count + 1;
+        
     }
     cv::cvtColor(targetImage, image, cv::COLOR_BGRA2RGB);
 }

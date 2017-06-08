@@ -65,6 +65,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/calib3d.hpp>
 
+
 //using namespace std;
 
 namespace LandmarkDetector
@@ -107,6 +108,10 @@ namespace LandmarkDetector
 //        }
 //    }
 //}
+   
+    //yyj global location variable
+    int loc1x,loc1y,loc2x,loc2y;
+    //- (void)  res=new int[10];
 
 // Extracting the following command line arguments -f, -fd, -op, -of, -ov (and possible ordered repetitions)
 void get_video_input_output_params(std::vector<std::string> &input_video_files, std::vector<std::string> &depth_dirs,
@@ -1012,76 +1017,110 @@ std::vector<cv::Point2d> CalculateLandmarks(CLNF& clnf_model)
 void Draw(cv::Mat img, const cv::Mat_<double>& shape2D, const cv::Mat_<int>& visibilities)
 {
     int n = shape2D.rows/2;
+    
+    int aX=0,aY=0,bX=0,bY=0,cX=0,cY=0;
+    int *res=new int[10];
 
     // Drawing feature points
     if(n >= 66)
     {
-        for( int i = 0; i < n; ++i)
+        for( int i = 0; i <n ; ++i)
         {
             if(visibilities.at<int>(i))
             {
+                
                 cv::Point featurePoint((int)shape2D.at<double>(i), (int)shape2D.at<double>(i +n));
-
+//                //printf("%d--x:%d,y:%d\n",i,featurePoint.x,featurePoint.y);
+//                if(i==0){
+//                    aX=featurePoint.x;
+//                    aY=featurePoint.y;
+//                    printf("in-res:x-%dy-%d\n",aX,aY);
+//                }
+//                if(i==8){
+//                    bX=featurePoint.x;
+//                    bY=featurePoint.y;
+//                }
+//                if(i==16){
+//                    cX=featurePoint.x;
+//                    cY=featurePoint.y;
+//                }
                 // A rough heuristic for drawn point size
                 int thickness = (int)std::ceil(3.0* ((double)img.cols) / 640.0);
-                int thickness_2 = (int)std::ceil(1.0* ((double)img.cols) / 640.0);
+                //int thickness_2 = (int)std::ceil(1.0* ((double)img.cols) / 640.0);
 
                 cv::circle(img, featurePoint, 1, cv::Scalar(0,255,0), thickness);
-                cv::circle(img, featurePoint, 1, cv::Scalar(255,0,0), thickness_2);
+                //cv::circle(img, featurePoint, 1, cv::Scalar(255,0,0), thickness_2);
             }
         }
     }
-    else if(n == 28) // drawing eyes
-    {
-        for( int i = 0; i < n; ++i)
-        {
-            cv::Point featurePoint((int)shape2D.at<double>(i), (int)shape2D.at<double>(i +n));
-
-            // A rough heuristic for drawn point size
-            int thickness = 1.0;
-            int thickness_2 = 1.0;
-
-            int next_point = i + 1;
-            if(i == 7)
-                next_point = 0;
-            if(i == 19)
-                next_point = 8;
-            if(i == 27)
-                next_point = 20;
-
-            cv::Point nextFeaturePoint((int)shape2D.at<double>(next_point), (int)shape2D.at<double>(next_point+n));
-            if( i < 8 || i > 19)
-                cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(255, 0, 0), thickness_2);
-            else
-                cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(0, 0, 255), thickness_2);
-
-            //cv::circle(img, featurePoint, 1, Scalar(0,255,0), thickness);
-            //cv::circle(img, featurePoint, 1, Scalar(0,0,255), thickness_2);
-
-
-        }
-    }
-    else if(n == 6)
-    {
-        for( int i = 0; i < n; ++i)
-        {
-            cv::Point featurePoint((int)shape2D.at<double>(i), (int)shape2D.at<double>(i +n));
-
-            // A rough heuristic for drawn point size
-            int thickness = 1.0;
-            int thickness_2 = 1.0;
-
-            //cv::circle(img, featurePoint, 1, Scalar(0,255,0), thickness);
-            //cv::circle(img, featurePoint, 1, Scalar(0,0,255), thickness_2);
-
-            int next_point = i + 1;
-            if(i == 5)
-                next_point = 0;
-
-            cv::Point nextFeaturePoint((int)shape2D.at<double>(next_point), (int)shape2D.at<double>(next_point+n));
-            cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(255, 0, 0), thickness_2);
-        }
-    }
+    //estimate the hair location
+//    loc1x=3*aX/2+cX/2-bX;
+//    loc1y=3*aY/2+cY/2-bY;
+//    loc2x=3*cX/2+aX/2-bX;
+//    loc2y=3*cY/2+aY/2-bY;
+//    res[0]=loc1x;
+//    res[1]=loc1y;
+//    res[2]=loc2x;
+//    res[3]=loc2y;
+//    res[4]=aX;
+//    res[5]=aY;
+//    res[6]=bX;
+//    res[7]=bY;
+//    res[8]=cX;
+//    res[9]=cY;
+//    printf("in-res:x-%dy-%d\n",res[0],res[1]);
+//    return res;
+//    else if(n == 28) // drawing eyes
+//    {
+//        for( int i = 0; i < n; ++i)
+//        {
+//            cv::Point featurePoint((int)shape2D.at<double>(i), (int)shape2D.at<double>(i +n));
+//
+//            // A rough heuristic for drawn point size
+//            int thickness = 1.0;
+//            int thickness_2 = 1.0;
+//
+//            int next_point = i + 1;
+//            if(i == 7)
+//                next_point = 0;
+//            if(i == 19)
+//                next_point = 8;
+//            if(i == 27)
+//                next_point = 20;
+//
+//            cv::Point nextFeaturePoint((int)shape2D.at<double>(next_point), (int)shape2D.at<double>(next_point+n));
+//            if( i < 8 || i > 19)
+//                cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(255, 0, 0), thickness_2);
+//            else
+//                cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(0, 0, 255), thickness_2);
+//
+//            //cv::circle(img, featurePoint, 1, Scalar(0,255,0), thickness);
+//            //cv::circle(img, featurePoint, 1, Scalar(0,0,255), thickness_2);
+//
+//
+//        }
+//    }
+//    else if(n == 6)
+//    {
+//        for( int i = 0; i < n; ++i)
+//        {
+//            cv::Point featurePoint((int)shape2D.at<double>(i), (int)shape2D.at<double>(i +n));
+//
+//            // A rough heuristic for drawn point size
+//            int thickness = 1.0;
+//            int thickness_2 = 1.0;
+//
+//            //cv::circle(img, featurePoint, 1, Scalar(0,255,0), thickness);
+//            //cv::circle(img, featurePoint, 1, Scalar(0,0,255), thickness_2);
+//
+//            int next_point = i + 1;
+//            if(i == 5)
+//                next_point = 0;
+//
+//            cv::Point nextFeaturePoint((int)shape2D.at<double>(next_point), (int)shape2D.at<double>(next_point+n));
+//            cv::line(img, featurePoint, nextFeaturePoint, cv::Scalar(255, 0, 0), thickness_2);
+//        }
+//    }
 }
 
 // Drawing landmarks on a face image
@@ -1089,6 +1128,8 @@ void Draw(cv::Mat img, const cv::Mat_<double>& shape2D)
 {
 
     int n;
+    
+    //- (void)  res=new int[4];
 
     if(shape2D.cols == 2)
     {
@@ -1118,18 +1159,17 @@ void Draw(cv::Mat img, const cv::Mat_<double>& shape2D)
         cv::circle(img, featurePoint, 1, cv::Scalar(255,0,0), thickness_2);
 
     }
-
+    //return res;
 }
 
 // Drawing detected landmarks on a face image
 void Draw(cv::Mat img, const CLNF& clnf_model)
 {
-
     int idx = clnf_model.patch_experts.GetViewIdx(clnf_model.params_global, 0);
 
     // Because we only draw visible points, need to find which points patch experts consider visible at a certain orientation
     Draw(img, clnf_model.detected_landmarks, clnf_model.patch_experts.visibilities[0][idx]);
-
+    
     // If the model has hierarchical updates draw those too
     for(size_t i = 0; i < clnf_model.hierarchical_models.size(); ++i)
     {
@@ -1138,6 +1178,8 @@ void Draw(cv::Mat img, const CLNF& clnf_model)
             Draw(img, clnf_model.hierarchical_models[i]);
         }
     }
+    //printf("draw-res:x-%dy-%d\n",res[0],res[1]);
+    //return res;
 }
 
 void DrawLandmarks(cv::Mat img, std::vector<cv::Point> landmarks)

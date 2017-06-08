@@ -353,7 +353,7 @@
 				TargetAttributes = {
 					83B04F701D2B8BF4008A9370 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XEXQ6WKSUP;
+						DevelopmentTeam = UH7B3Z6QRK;
 						LastSwiftMigration = 0830;
 					};
 					83B04F8C1D2B8BF4008A9370 = {
@@ -581,6 +581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UH7B3Z6QRK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -589,10 +590,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = FaceAR_SDK_IOS_OpenFace_RunFull/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "KeeganRen.FaceAR-SDK-IOS-OpenFace-RunFull";
+				PRODUCT_BUNDLE_IDENTIFIER = yyj.Mycode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/FaceARDetect $(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/local/LandmarkDetector/include $(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/local/GazeEstimate";
 			};
 			name = Debug;
@@ -603,6 +606,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UH7B3Z6QRK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -612,10 +616,12 @@
 				INFOPLIST_FILE = FaceAR_SDK_IOS_OpenFace_RunFull/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "KeeganRen.FaceAR-SDK-IOS-OpenFace-RunFull";
+				PRODUCT_BUNDLE_IDENTIFIER = yyj.Mycode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/FaceARDetect $(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/local/LandmarkDetector/include $(SRCROOT)/FaceAR_SDK_IOS_OpenFace_RunFull/lib/local/GazeEstimate";
 			};
 			name = Release;

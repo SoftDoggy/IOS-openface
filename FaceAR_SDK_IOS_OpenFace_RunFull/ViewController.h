@@ -10,12 +10,13 @@
 
 #import <opencv2/videoio/cap_ios.h>
 
+
 @interface ViewController : UIViewController<CvVideoCameraDelegate>
 
 //- (IBAction)startButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *start;
+@property (weak, nonatomic) IBOutlet UIButton *stop;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
-
+@property (weak, nonatomic) IBOutlet UIImageView *adornment;
 @end
-
